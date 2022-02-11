@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/mrDarcy" />
+        app:srcCompat="@drawable/mrdarcy" />
 
     <ImageView
         android:id="@+id/mrWickham"
@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/mrWickham" />
+        app:srcCompat="@drawable/mrwickham" />
 
     <TextView
         android:id="@+id/txtHeroDMG"

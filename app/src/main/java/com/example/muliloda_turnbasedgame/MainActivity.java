@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView txtHeroHP, txtEnemyHP, txtHeroDMG, txtEnemyDMG, txtCombatLog;
     Button btnSlash;
-    ImageView mrDarcy = findViewById(R.id.mrDarcy);
-    ImageView mrWickham = findViewById(R.id.mrWickham);
+    ImageView mrdarcy = findViewById(R.id.mrDarcy);
+    ImageView mrwickham = findViewById(R.id.mrWickham);
 
     String heroName = "Mr. Darcy";
     int heroHP = 2000;
@@ -60,23 +60,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         Random randomizer = new Random();
-        int herodps = randomizer.nextInt((heroMaxDamage - heroMinDamage) + heroMaxDamage );
-        int enemydps = randomizer.nextInt((enemyMaxDamage - enemyMinDamage) + enemyMaxDamage );
+        int txtHeroDMG = randomizer.nextInt((heroMaxDamage - heroMinDamage) + heroMaxDamage );
+        int txtEnemyDMG = randomizer.nextInt((enemyMaxDamage - enemyMinDamage) + enemyMaxDamage );
 
 
 
         switch(v.getId()) {
             case R.id.btnSlash:
                 if (turnNumber%2 == 1) {
-                    mrDarcy.setVisibility(View.VISIBLE);
-                    mrWickham.setVisibility(View.VISIBLE);
+                    mrdarcy.setVisibility(View.VISIBLE);
+                    mrwickham.setVisibility(View.VISIBLE);
                     enemyHP = Math.max(0,enemyHP - txtHeroDMG);
                     txtCombatLog.setText("Mr Darcy gave" + txtEnemyDMG + " damage to " + enemyName);
                     txtEnemyHP.setText(String.valueOf(enemyHP));
                     btnSlash.setText("Wickham's turn\nPress to proceed");
                     turnNumber++;
                     if (enemyHP == 0) {
-                        mrDarcy.setVisibility(View.INVISIBLE);
+                        mrdarcy.setVisibility(View.INVISIBLE);
                         turnNumber = 1;
                         heroHP = 1000;
                         enemyHP = 950;
@@ -85,15 +85,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 else if (turnNumber%2 != 1) {
-                    mrDarcy.setVisibility(View.VISIBLE);
-                    mrWickham.setVisibility(View.VISIBLE);
+                    mrdarcy.setVisibility(View.VISIBLE);
+                    mrwickham.setVisibility(View.VISIBLE);
                     heroHP = Math.max(0, heroHP - txtEnemyDMG);
                     txtCombatLog.setText(enemyName + "gave" + txtEnemyDMG + "damage to" + heroName);
                     txtHeroHP.setText(String.valueOf(heroHP));
                     btnSlash.setText("Slash");
                     turnNumber++;
                     if (heroHP == 0) {
-                        mrWickham.setVisibility(View.INVISIBLE);
+                        mrwickham.setVisibility(View.INVISIBLE);
                         turnNumber = 1;
                         heroHP = 1000;
                         enemyHP = 950;
