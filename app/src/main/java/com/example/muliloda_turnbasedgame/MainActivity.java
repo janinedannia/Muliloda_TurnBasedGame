@@ -2,6 +2,7 @@ package com.example.muliloda_turnbasedgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,20 +13,19 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView txtHeroHP, txtEnemyHP, txtHeroDMG, txtEnemyDMG, txtCombatLog;
-    Button btnSlash;
-    ImageView mrdarcy = findViewById(R.id.mrDarcy);
-    ImageView mrwickham = findViewById(R.id.mrWickham);
-
     String heroName = "Mr. Darcy";
     int heroHP = 2000;
-    int heroMinDamage = 200;
-    int heroMaxDamage = 300;
+    int heroMinDMG = 200;
+    int heroMaxDMG = 300;
 
     String enemyName = "Mr. Wickham";
     int enemyHP = 2500;
-    int enemyMinDamage = 100;
-    int enemyMaxDamage = 150;
+    int enemyMinDMG= 100;
+    int enemyMaxDMG = 150;
+
+    TextView txtHeroHP, txtEnemyHP, txtHeroDMG, txtEnemyDMG, txtCombatLog;
+    Button btnSlash;
+
 
     int turnNumber = 1;
 
@@ -38,17 +38,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtHeroHP = findViewById(R.id.txtHeroHP);
         txtEnemyHP= findViewById(R.id.txtEnemyHP);
         txtHeroDMG = findViewById(R.id.txtEnemyDMG);
+        txtEnemyDMG = findViewById(R.id.txtEnemyDMG);
         btnSlash = findViewById(R.id.btnSlash);
 
 
 
         txtHeroHP.setText(String.valueOf(heroHP));
-        txtHeroDMG.setText(String.valueOf(txtHeroDMG));
-        txtHeroDMG.setText("Damage per turn:" + heroMinDamage+ "-"+ heroMaxDamage);
+        txtHeroDMG.setText("Damage per turn:" + heroMinDMG+ "-"+ heroMaxDMG);
 
         txtEnemyHP.setText(String.valueOf(enemyHP));
-        txtEnemyDMG.setText(String.valueOf(txtEnemyDMG));
-        txtEnemyDMG.setText("Damage per turn "+ enemyMinDamage+ " - "+ enemyMaxDamage);
+        txtEnemyDMG.setText("Damage per turn "+ enemyMinDMG+ " - "+ enemyMaxDMG);
 
 
         btnSlash.setOnClickListener(this);
@@ -60,9 +59,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         Random randomizer = new Random();
-        int txtHeroDMG = randomizer.nextInt((heroMaxDamage - heroMinDamage) + heroMaxDamage );
-        int txtEnemyDMG = randomizer.nextInt((enemyMaxDamage - enemyMinDamage) + enemyMaxDamage );
+        int txtHeroDMG = randomizer.nextInt((heroMaxDMG - heroMinDMG) + heroMaxDMG);
+        int txtEnemyDMG = randomizer.nextInt((enemyMaxDMG - enemyMinDMG) + enemyMaxDMG);
 
+        ImageView mrdarcy = findViewById(R.id.mrDarcy);
+        ImageView mrwickham = findViewById(R.id.mrWickham);
+
+        txtHeroHP.setText(String.valueOf(heroHP));
+        txtEnemyHP.setText(String.valueOf(enemyHP));
 
 
         switch(v.getId()) {
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     btnSlash.setText("Wickham's turn\nPress to proceed");
                     turnNumber++;
                     if (enemyHP == 0) {
-                        mrdarcy.setVisibility(View.INVISIBLE);
+                        mrwickham.setVisibility(View.INVISIBLE);
                         turnNumber = 1;
                         heroHP = 1000;
                         enemyHP = 950;
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     btnSlash.setText("Slash");
                     turnNumber++;
                     if (heroHP == 0) {
-                        mrwickham.setVisibility(View.INVISIBLE);
+                        mrdarcy.setVisibility(View.INVISIBLE);
                         turnNumber = 1;
                         heroHP = 1000;
                         enemyHP = 950;
